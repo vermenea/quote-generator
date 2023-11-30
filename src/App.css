@@ -1,0 +1,25 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.generate-btn {
+    text-transform: uppercase;
+    background-color: red;
+}
+.card {
+    padding: 2em;
+}
+
+.read-the-docs {
+    color: #888;
+}
