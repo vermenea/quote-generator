@@ -34,6 +34,16 @@ function App() {
         }
     }
 
+    const handleValidation = (value: string) => {
+        const isANumber = /^[0-9]*$/.test(value)
+
+        if (isANumber) {
+            setAmount(parseInt(value, 10))
+        } else {
+            alert('invalid number')
+        }
+    }
+
     const copyToClipboard = (text: string) =>
         navigator.clipboard.writeText(text)
 
@@ -53,7 +63,7 @@ function App() {
                                     copyToClipboard(quote.content)
                                 }}
                             >
-                                {quote.content}
+                                <hr> {quote.content}</hr>
                             </div>
                         )
                     })}
@@ -67,23 +77,20 @@ function App() {
             >
                 generate
             </button>
-            {amount}
+
             <input
                 className="quote-amount"
-                type="number"
-                defaultValue={amount}
-                onChange={(e) =>
-                    setAmount(
-                        parseInt(e.target.value !== '' ? e.target.value : '0')
-                    )
-                }
+                type="text"
+                pattern="[0-9]"
+                defaultValue={amount.toString()}
+                onChange={(e) => handleValidation(e.currentTarget.value)}
             ></input>
         </div>
     )
 }
 
 const fetchQuote = async (amount: number) => {
-    const resp = await fetch(BASE_API_URL + `/quotes/ramdom?limit=${amount}`, {
+    const resp = await fetch(BASE_API_URL + `/quotes/random?limit=${amount}`, {
         method: 'GET',
     })
     if (!resp.ok) throw new Error('HTTP Error')
