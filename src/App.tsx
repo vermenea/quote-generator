@@ -39,6 +39,7 @@ function App() {
 
     return (
         <div className="container">
+            <h1>Quote generator</h1>
             {isError && <div>Failed to fetch quotes</div>}
             {isLoading ? (
                 <div>Loading</div>
@@ -67,7 +68,6 @@ function App() {
             >
                 generate
             </button>
-            {amount}
             <input
                 className="quote-amount"
                 type="number"
@@ -83,7 +83,7 @@ function App() {
 }
 
 const fetchQuote = async (amount: number) => {
-    const resp = await fetch(BASE_API_URL + `/quotes/ramdom?limit=${amount}`, {
+    const resp = await fetch(BASE_API_URL + `/quotes/random?limit=${amount}`, {
         method: 'GET',
     })
     if (!resp.ok) throw new Error('HTTP Error')
