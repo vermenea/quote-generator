@@ -12,6 +12,7 @@ A simple React application that generates random quotes. This project is a basic
 
 ## Technologies used
 - React
+- Typescript
 - CSS
 - API
 
