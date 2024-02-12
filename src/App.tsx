@@ -17,6 +17,8 @@ function App() {
     const [amount, setAmount] = useState<number>(1)
     const [isError, setIsError] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [copiedQuote, setCopiedQuote] = useState<string>('')
+    const [showPopup, setShowPopup] = useState<boolean>(false)
 
     const isValid = amount >= 1 && amount <= 50
 
@@ -34,51 +36,92 @@ function App() {
         }
     }
 
-    const copyToClipboard = (text: string) =>
+    const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text)
+        setCopiedQuote(text)
+        setTimeout(() => {
+            setCopiedQuote('')
+        }, 1000)
+    }
+
+    const handleInfoHover = () => {
+        setShowPopup(true)
+    }
+
+    const handleInfoLeave = () => {
+        setShowPopup(false)
+    }
 
     return (
-        <div className="container">
-            <h1>Quote generator</h1>
-            {isError && <div>Failed to fetch quotes</div>}
-            {isLoading ? (
-                <div>Loading</div>
-            ) : (
-                <div className="quotes">
-                    {quotes.map((quote) => {
-                        return (
-                            <div
-                                className="quote"
-                                key={quote._id}
-                                onClick={() => {
-                                    copyToClipboard(quote.content)
-                                }}
-                            >
-                                {quote.content}
-                            </div>
-                        )
-                    })}
+        <>
+            <div className="container">
+                <div
+                    className="icon-container"
+                    onMouseEnter={handleInfoHover}
+                    onMouseLeave={handleInfoLeave}
+                >
+                    {' '}
+                    <img
+                        className="info-circle"
+                        src="./src/assets/info-circle.svg"
+                    ></img>
+                    {showPopup && (
+                        <p className="popup">
+                            Copy button only allows you to copy first quote
+                        </p>
+                    )}
                 </div>
-            )}
 
-            <button
-                className="generate-btn"
-                onClick={() => handleGenerateQuote(amount)}
-                disabled={!isValid}
-            >
-                generate
-            </button>
-            <input
-                className="quote-amount"
-                type="number"
-                defaultValue={amount}
-                onChange={(e) =>
-                    setAmount(
-                        parseInt(e.target.value !== '' ? e.target.value : '0')
-                    )
-                }
-            ></input>
-        </div>
+                <h1>Quote generator</h1>
+                {isError && <div>Failed to fetch quotes</div>}
+                {isLoading ? (
+                    <div>Loading</div>
+                ) : (
+                    <div className="quotes">
+                        {quotes.map((quote) => {
+                            return (
+                                <>
+                                    {' '}
+                                    <div className="quote" key={quote._id}>
+                                        {'❝' + quote.content + '❞'}
+                                    </div>
+                                </>
+                            )
+                        })}
+                        <button
+                            className="btn"
+                            onClick={() => copyToClipboard(quotes[0]?.content)}
+                        >
+                            <img src="./src/assets/copy.svg"></img>
+                        </button>
+                    </div>
+                )}
+
+                <div>
+                    {copiedQuote && <p>Copied!</p>}
+                    <button
+                        className="btn"
+                        onClick={() => handleGenerateQuote(amount)}
+                        disabled={!isValid}
+                    >
+                        generate
+                    </button>
+                    <input
+                        className="quote-amount"
+                        type="number"
+                        defaultValue={amount}
+                        onChange={(e) =>
+                            setAmount(
+                                parseInt(
+                                    e.target.value !== '' ? e.target.value : '0'
+                                )
+                            )
+                        }
+                    ></input>
+                </div>
+            </div>
+            <footer>Coded by<a href='https://github.com/vermenea'> vermenea</a></footer>
+        </>
     )
 }
 
