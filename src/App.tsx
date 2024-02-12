@@ -92,7 +92,7 @@ function App() {
                             className="btn"
                             onClick={() => copyToClipboard(quotes[0]?.content)}
                         >
-                            <img src="./src/assets/copy.svg"></img>
+                            <img src="./src/assets/copyicon.svg"></img>
                         </button>
                     </div>
                 )}
