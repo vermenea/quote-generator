@@ -61,10 +61,23 @@ function App() {
                     onMouseLeave={handleInfoLeave}
                 >
                     {' '}
-                    <img
-                        className="info-circle"
-                        src="./src/public/info-circle.svg"
-                    ></img>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="info-circle icon-tabler icon-tabler-info-circle"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+                        <path d="M12 9h.01" />
+                        <path d="M11 12h1v4h1" />
+                    </svg>
                     {showPopup && (
                         <p className="popup">
                             Copy button only allows you to copy first quote
@@ -92,7 +105,26 @@ function App() {
                             className="btn"
                             onClick={() => copyToClipboard(quotes[0]?.content)}
                         >
-                            <img src="./src/public/copyicon.svg"></img>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="icon icon-tabler icon-tabler-copy"
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                />
+                                <path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z" />
+                                <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" />
+                            </svg>
                         </button>
                     </div>
                 )}
@@ -120,7 +152,9 @@ function App() {
                     ></input>
                 </div>
             </div>
-            <footer>Coded by<a href='https://github.com/vermenea'> vermenea</a></footer>
+            <footer>
+                Coded by<a href="https://github.com/vermenea"> vermenea</a>
+            </footer>
         </>
     )
 }
