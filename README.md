@@ -5,11 +5,10 @@ A simple React application that generates random quotes.
 ## Features
 
 - Display a random quote on the screen.
-- Ability to copy liked quote
+- Ability to copy liked quote.
 - Responsive design for various screen sizes.
-- Clean and minimalistic user interface. 🔜
-- Ability to pick a number of quotes that will be generated
-- Better UI/UX 🔜
+- Clean and minimalistic user interface.
+- Ability to pick a number of quotes that will be generated.
 
 ## Technologies used
 - React
