@@ -63,7 +63,7 @@ function App() {
                     {' '}
                     <img
                         className="info-circle"
-                        src="./src/assets/info-circle.svg"
+                        src="./src/public/info-circle.svg"
                     ></img>
                     {showPopup && (
                         <p className="popup">
@@ -92,7 +92,7 @@ function App() {
                             className="btn"
                             onClick={() => copyToClipboard(quotes[0]?.content)}
                         >
-                            <img src="./src/assets/copyicon.svg"></img>
+                            <img src="./src/public/copyicon.svg"></img>
                         </button>
                     </div>
                 )}
